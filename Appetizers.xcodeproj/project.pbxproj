@@ -35,6 +35,7 @@
 		932C1A962C75BE8700CA4D00 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C1A952C75BE8700CA4D00 /* User.swift */; };
 		932C1A982C75CD5600CA4D00 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C1A972C75CD5600CA4D00 /* Order.swift */; };
 		932C1A9A2C75CEC300CA4D00 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C1A992C75CEC300CA4D00 /* EmptyState.swift */; };
+		932C1A9E2C75F3EC00CA4D00 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C1A9D2C75F3EC00CA4D00 /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		932C1A952C75BE8700CA4D00 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		932C1A972C75CD5600CA4D00 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		932C1A992C75CEC300CA4D00 /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
+		932C1A9D2C75F3EC00CA4D00 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 		932C1A692C74843E00CA4D00 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				932C1A9D2C75F3EC00CA4D00 /* Date+Ext.swift */,
 				932C1A6A2C74845300CA4D00 /* Double+Currency.swift */,
 				932C1A932C75B7F700CA4D00 /* String+Regex.swift */,
 				932C1A8F2C758CD800CA4D00 /* View+Popup.swift */,
@@ -427,6 +430,7 @@
 				932C1A9A2C75CEC300CA4D00 /* EmptyState.swift in Sources */,
 				932C1A652C7482BA00CA4D00 /* Appetizer.swift in Sources */,
 				932C1A902C758CD800CA4D00 /* View+Popup.swift in Sources */,
+				932C1A9E2C75F3EC00CA4D00 /* Date+Ext.swift in Sources */,
 				932C1A722C74862800CA4D00 /* AppetizerListView.swift in Sources */,
 				932C1A8E2C758B0F00CA4D00 /* XDismissButton.swift in Sources */,
 				932C1A982C75CD5600CA4D00 /* Order.swift in Sources */,
