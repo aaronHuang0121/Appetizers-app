@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AppetizerDetailView: View {
+    @EnvironmentObject private var order: Order
+
     let appetizer: Appetizer
     let onClose: () -> Void
 
@@ -35,7 +37,10 @@ struct AppetizerDetailView: View {
             Spacer()
             
             Button(
-                action: {},
+                action: {
+                    order.add(appetizer)
+                    onClose()
+                },
                 label: {
                     appetizer.price.currency
                     + Text(" - Add to Order")

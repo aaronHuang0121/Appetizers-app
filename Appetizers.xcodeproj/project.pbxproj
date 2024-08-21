@@ -33,6 +33,8 @@
 		932C1A922C759F5300CA4D00 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C1A912C759F5300CA4D00 /* AccountViewModel.swift */; };
 		932C1A942C75B7F700CA4D00 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C1A932C75B7F700CA4D00 /* String+Regex.swift */; };
 		932C1A962C75BE8700CA4D00 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C1A952C75BE8700CA4D00 /* User.swift */; };
+		932C1A982C75CD5600CA4D00 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C1A972C75CD5600CA4D00 /* Order.swift */; };
+		932C1A9A2C75CEC300CA4D00 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C1A992C75CEC300CA4D00 /* EmptyState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		932C1A912C759F5300CA4D00 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		932C1A932C75B7F700CA4D00 /* String+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
 		932C1A952C75BE8700CA4D00 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		932C1A972C75CD5600CA4D00 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		932C1A992C75CEC300CA4D00 /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				932C1A642C7482BA00CA4D00 /* Appetizer.swift */,
+				932C1A972C75CD5600CA4D00 /* Order.swift */,
 				932C1A952C75BE8700CA4D00 /* User.swift */,
 				932C1A802C7491CD00CA4D00 /* Rest */,
 			);
@@ -203,9 +208,10 @@
 		932C1A632C74828C00CA4D00 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				932C1A992C75CEC300CA4D00 /* EmptyState.swift */,
+				932C1A852C74A33100CA4D00 /* RemoteImage.swift */,
 				932C1A8A2C75898200CA4D00 /* Buttons */,
 				932C1A662C74834300CA4D00 /* Cells */,
-				932C1A852C74A33100CA4D00 /* RemoteImage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -418,10 +424,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				932C1A9A2C75CEC300CA4D00 /* EmptyState.swift in Sources */,
 				932C1A652C7482BA00CA4D00 /* Appetizer.swift in Sources */,
 				932C1A902C758CD800CA4D00 /* View+Popup.swift in Sources */,
 				932C1A722C74862800CA4D00 /* AppetizerListView.swift in Sources */,
 				932C1A8E2C758B0F00CA4D00 /* XDismissButton.swift in Sources */,
+				932C1A982C75CD5600CA4D00 /* Order.swift in Sources */,
 				932C1A8C2C75899600CA4D00 /* StandardButtonStyle.swift in Sources */,
 				932C1A6B2C74845300CA4D00 /* Double+Currency.swift in Sources */,
 				932C1A942C75B7F700CA4D00 /* String+Regex.swift in Sources */,
