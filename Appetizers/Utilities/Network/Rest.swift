@@ -16,13 +16,28 @@ enum Rest {
 enum RestError: LocalizedError {
     case invalidURL
     case unableToComplete
-    case invalidResponse
+    case invalidResponse(Int)
     case invalidData
+    case unknowError(Error)
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidURL:
+            return "Invalid Url"
+        case .unableToComplete:
+            return "Unable to complete"
+        case .invalidResponse(let statusCode):
+            return "Invalid response with error code: \(statusCode)"
+        case .invalidData:
+            return "Invalid data"
+        case .unknowError(let error):
+            return error.localizedDescription
+        }
+    }
 }
 
 protocol RestProtocol {
     func get<R: Decodable, E: Error>(
-        endpoint: String,
-        completed: @escaping (Result<R, E>) -> Void
-    ) -> Void
+        endpoint: String
+    ) async -> Result<R, E>
 }

@@ -16,9 +16,7 @@ extension Rest {
 }
 
 extension RestProtocol {
-    func getAppetizers(completed: @escaping (Result<Rest.GetAppetizers.Response, RestError>) -> Void) -> Void {
-        get(
-            endpoint: "appetizers", completed: completed
-        )
+    func getAppetizers() async -> Result<Rest.GetAppetizers.Response, RestError> {
+        await get(endpoint: "appetizers")
     }
 }

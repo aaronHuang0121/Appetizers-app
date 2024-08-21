@@ -17,6 +17,7 @@ struct AppetizerListView: View {
                     ForEach(viewModel.appetizers) { appetizer in
                         AppetizerListCell(appetizer: appetizer)
                             .listRowSeparator(.hidden)
+                            .contentShape(Rectangle())
                             .onTapGesture {
                                 viewModel.selectedAppetizer = appetizer
                             }
@@ -32,7 +33,10 @@ struct AppetizerListView: View {
             }
             .navigationTitle("Appetizer View")
         }
-        .onAppear(perform: viewModel.getAppetizers)
+//        .onAppear(perform: viewModel.getAppetizers)
+        .task {
+            viewModel.getAppetizers()
+        }
         .popup(
             item: $viewModel.selectedAppetizer
         ) { appetizer in

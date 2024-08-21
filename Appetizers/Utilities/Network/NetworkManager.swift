@@ -10,51 +10,49 @@ import UIKit
 
 final class NetworkManager: ObservableObject, RestProtocol {
     static let share = NetworkManager()
+    private let session: URLSession
     let imageSession: URLSession
 
     private init() {
         self.imageSession = .imageSession
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 10   // 10s
+        self.session = URLSession(configuration: config)
     }
     
-    func request<R: Decodable, E: Error>(
-        url urlString: String,
-        completed: @escaping (Result<R, E>) -> Void
-    ) {
+    func request<R: Decodable>(url urlString: String) async throws -> R {
         guard let url = URL(string: Rest.baseURL + urlString) else {
-            completed(.failure(RestError.invalidURL as! E))
-            return
+            throw RestError.invalidURL
         }
         
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
-            guard error == nil else {
-                completed(.failure(RestError.unableToComplete as! E))
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, 200...299 ~= response.statusCode else {
-                completed(.failure(RestError.invalidResponse as! E))
-                return
-            }
-            
-            guard let data else {
-                completed(.failure(RestError.invalidData as! E))
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let res = try decoder.decode(R.self, from: data)
-                completed(.success(res))
-            } catch {
-                completed(.failure(RestError.invalidData as! E))
-            }
+        let (data, response) = try await session.data(from: url)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw RestError.invalidResponse(0)
         }
         
-        task.resume()
+        guard 200...299 ~= httpResponse.statusCode else {
+            throw RestError.invalidResponse(httpResponse.statusCode)
+        }
+        
+        do {
+            return try JSONDecoder().decode(R.self, from: data)
+        } catch {
+            throw RestError.invalidData
+        }
     }
-    
-    func get<R, E>(endpoint: String, completed: @escaping (Result<R, E>) -> Void) where R : Decodable, E : Error {
-        request(url: endpoint, completed: completed)
+
+    func get<R: Decodable, E: Error>(endpoint: String) async -> Result<R, E> {
+        do {
+            let result: R = try await request(url: endpoint)
+            return .success(result)
+        } catch {
+            Rest.logger.error("\(error.localizedDescription)")
+            if let clientError = error as? E {
+                return .failure(clientError)
+            }
+            return .failure(RestError.unknowError(error) as! E)
+        }
     }
 
     func downloadImage(url: URL?) async throws -> UIImage? {

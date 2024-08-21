@@ -7,22 +7,22 @@
 
 import Foundation
 
+@MainActor
 final class AppetizerListViewModel: ObservableObject {
     @Published var appetizers: [Appetizer] = []
     @Published var isLoading: Bool = false
     @Published var selectedAppetizer: Appetizer? = nil
 
-    func getAppetizers() -> Void {
+    func getAppetizers() {
         isLoading = true
-        NetworkManager.share.getAppetizers { response in
-            DispatchQueue.main.async {
-                self.isLoading = false
-                switch response {
-                case .success(let appetizers):
-                    self.appetizers = appetizers.request
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        Task {
+            switch await NetworkManager.share.getAppetizers() {
+            case .success(let appetizers):
+                self.appetizers = appetizers.request
+                isLoading = false
+            case .failure(let error):
+                print(error.localizedDescription)
+                isLoading = false
             }
         }
     }
