@@ -12,23 +12,22 @@ struct AppetizerListView: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack {
-                    LazyVStack {
-                        ForEach(viewModel.appetizers) { appetizer in
-                            AppetizerListCell(appetizer: appetizer)
-                                .onTapGesture {
-                                    viewModel.selectedAppetizer = appetizer
-                                }
-                        }
+            VStack {
+                List {
+                    ForEach(viewModel.appetizers) { appetizer in
+                        AppetizerListCell(appetizer: appetizer)
+                            .listRowSeparator(.hidden)
+                            .onTapGesture {
+                                viewModel.selectedAppetizer = appetizer
+                            }
                     }
-                    .padding()
-                    
-                    if viewModel.isLoading {
-                        ProgressView()
-                            .controlSize(.large)
-                            .padding()
-                    }
+                }
+                .listStyle(.plain)
+                
+                if viewModel.isLoading {
+                    ProgressView()
+                        .controlSize(.large)
+                        .padding()
                 }
             }
             .navigationTitle("Appetizer View")
